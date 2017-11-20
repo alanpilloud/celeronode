@@ -95,28 +95,28 @@ let flags = {
     code: 0x0d,
     name: "Axial moment of inertia",
     unit: "kgm^2",
-    type: "float",
+    type: "Float",
     readOnly: false
   },
   PMFluxLinkage: {
     code: 0x0e,
     name: "PM flux linkage",
     unit: "Vs",
-    type: "float",
+    type: "Float",
     readOnly: false
   },
   phaseInductance: {
     code: 0x0f,
     name: "Phase inductance",
     unit: "H",
-    type: "float",
+    type: "Float",
     readOnly: false
   },
   phaseResistance: {
     code: 0x10,
     name: "Phase resistance",
     unit: "Ohm",
-    type: "float",
+    type: "Float",
     readOnly: false
   },
   rotationDirection: {
@@ -130,21 +130,21 @@ let flags = {
     code: 0x12,
     name: "Acc. ratio (above sync.)",
     unit: "rpm/s",
-    type: "float",
+    type: "Float",
     readOnly: false
   },
   accelerationRatioBelowSync: {
     code: 0x13,
     name: "Acc. ratio (below sync.)",
     unit: "rpm/s",
-    type: "float",
+    type: "Float",
     readOnly: false
   },
   speedControllerRiseTime: {
     code: 0x14,
     name: "Speed controller rise time",
     unit: "s",
-    type: "float",
+    type: "Float",
     readOnly: false
   },
   userDefinedSyncSpeed: {
@@ -193,14 +193,14 @@ let flags = {
     code: 0x1b,
     name: "Proportional speed gain",
     unit: "-",
-    type: "float",
+    type: "Float",
     readOnly: false
   },
   integralSpeedGain: {
     code: 0x1c,
     name: "Integral speed gain",
     unit: "-",
-    type: "float",
+    type: "Float",
     readOnly: false
   }
 };

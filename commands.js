@@ -1,21 +1,66 @@
+/*
+ * code: the code of the command
+ * requestLength: the number of bytes that the package must contain, minus the length byte
+ * replyLength: the number of bytes that the package must contain, including the length byte
+ * skipFirstXBytes: masks the non-data bytes (length, command, etc.) for a more user-friendly usage
+ * requireFlag: this command needs to be used with a flag
+ * requireType: this command needs to be used with a type of variable
+ * requireValue: this command needs to be used with a value
+ */
 let commands = {
   getStatus: {
     code: 0x00,
-    requestLength: 0x02,
-    replyLength: 0x04,
-    requireFlag: false
+    requestLength: 0x00,
+    replyLength: 0x13,
+    skipFirstXBytes: 2,
+    requireFlag: false,
+    requireType: false,
+    requireValue: false
+  },
+  ackError: {
+    code: 0x01,
+    requestLength: 0x0a,
+    replyLength: 0x03,
+    skipFirstXBytes: 2,
+    requireFlag: false,
+    requireType: false,
+    requireValue: true
   },
   readValue: {
     code: 0x04,
     requestLength: 0x03,
     replyLength: 0x08,
-    requireFlag: true
+    skipFirstXBytes: 2,
+    requireFlag: true,
+    requireType: false,
+    requireValue: false
   },
   writeValue: {
     code: 0x05,
     requestLength: 0x08,
     replyLength: 0x03,
-    requireFlag: true
+    skipFirstXBytes: 3,
+    requireFlag: true,
+    requireType: true,
+    requireValue: true
+  },
+  start: {
+    code: 0x02,
+    requestLength: 0x02,
+    replyLength: 0x03,
+    skipFirstXBytes: 0,
+    requireFlag: false,
+    requireType: false,
+    requireValue: false
+  },
+  stop: {
+    code: 0x03,
+    requestLength: 0x02,
+    replyLength: 0x03,
+    skipFirstXBytes: 0,
+    requireFlag: false,
+    requireType: false,
+    requireValue: false
   }
 };
 
