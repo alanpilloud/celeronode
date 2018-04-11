@@ -11,7 +11,7 @@ let commands = {
   getStatus: {
     code: 0x00,
     requestLength: 0x00,
-    replyLength: 0x13,
+    replyLength: 0x05,
     skipFirstXBytes: 2,
     requireFlag: false,
     requireType: false,

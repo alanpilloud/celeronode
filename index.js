@@ -16,6 +16,8 @@ SerialPort.list(function(err, results) {
     throw err;
   }
 
+  console.log(results);
+
   var device = results.find(device => {
     return device.manufacturer == "Prolific Technology Inc. ";
   });
@@ -122,20 +124,12 @@ function makeCommand(command, params) {
   // set length of the package
   params.unshift(params.length + 1);
 
-  if (userArgs.commandName == "writeValue") {
-    value = params.shift();
-    params.push(0, 0, 0);
-    params.push(value);
-    params = [8, 5, 0, 3, 0, 0, 0, 234];
-  }
-
-  if (userArgs.commandName == "ackError") {
-  }
-
   // calculate checksum
   params.push(getChecksum(params));
 
   let buffer = new Int16Array(params);
+
+  console.log(buffer);
 
   return Buffer.from(buffer);
 }
