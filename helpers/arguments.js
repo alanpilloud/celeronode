@@ -19,6 +19,7 @@ module.exports = {
     }
 
     let data = [];
+    let flag = [];
 
     let command = commands[options.command];
 
@@ -63,13 +64,45 @@ module.exports = {
         process.exit(1);
       }
 
-      data.push(parseInt(options.value));
+      let buffer;
+
+      switch (flag.type) {
+        case "Int16":
+          buffer = new Int16Array(options.value).buffer;
+          break;
+
+        case "Uint16":
+          buffer = new Uint16Array(options.value).buffer;
+          break;
+
+        case "Int32":
+          buffer = toBytesInt32(options.value);
+          break;
+
+        case "Uint32":
+          buffer = new Uint32Array(options.value).buffer;
+          break;
+
+        case "Float":
+          buffer = new Float32Array(options.value).buffer;
+          break;
+      }
+      //let value = new Int8Array(buffer);
+      console.log(buffer.reverse());
+      data.push(...buffer);
     }
 
     return {
       commandName: options.command,
       command,
+      flag,
       data
     };
   }
 };
+
+function toBytesInt32(num) {
+  let b = new ArrayBuffer(4);
+  new DataView(b).setUint32(0, num);
+  return Array.from(new Uint8Array(b));
+}

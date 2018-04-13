@@ -11,6 +11,7 @@ let commands = {
   getStatus: {
     code: 0x00,
     requestLength: 0x00,
+    requestCheckSum: 0xfe,
     replyLength: 0x05,
     skipFirstXBytes: 2,
     requireFlag: false,
@@ -20,6 +21,7 @@ let commands = {
   ackError: {
     code: 0x01,
     requestLength: 0x0a,
+    requestCheckSum: 0xfd,
     replyLength: 0x03,
     skipFirstXBytes: 2,
     requireFlag: false,
@@ -47,6 +49,7 @@ let commands = {
   start: {
     code: 0x02,
     requestLength: 0x02,
+    requestCheckSum: 0xfc,
     replyLength: 0x03,
     skipFirstXBytes: 0,
     requireFlag: false,
@@ -56,6 +59,7 @@ let commands = {
   stop: {
     code: 0x03,
     requestLength: 0x02,
+    requestCheckSum: 0xfb,
     replyLength: 0x03,
     skipFirstXBytes: 0,
     requireFlag: false,
