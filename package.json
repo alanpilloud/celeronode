@@ -15,5 +15,8 @@
   },
   "devDependencies": {
     "mocha": "^4.0.1"
+  },
+  "bin": {
+    "celero": "./index.js"
   }
 }
