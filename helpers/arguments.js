@@ -68,27 +68,16 @@ module.exports = {
 
       switch (flag.type) {
         case "Int16":
-          buffer = new Int16Array(options.value).buffer;
-          break;
-
         case "Uint16":
-          buffer = new Uint16Array(options.value).buffer;
+          buffer = toBytesInt16(options.value);
           break;
 
         case "Int32":
+        case "Uint32":
+        case "Float":
           buffer = toBytesInt32(options.value);
           break;
-
-        case "Uint32":
-          buffer = new Uint32Array(options.value).buffer;
-          break;
-
-        case "Float":
-          buffer = new Float32Array(options.value).buffer;
-          break;
       }
-      //let value = new Int8Array(buffer);
-      console.log(buffer.reverse());
       data.push(...buffer);
     }
 
@@ -100,6 +89,12 @@ module.exports = {
     };
   }
 };
+
+function toBytesInt16(num) {
+  let b = new ArrayBuffer(2);
+  new DataView(b).setUint16(0, num);
+  return Array.from(new Uint8Array(b));
+}
 
 function toBytesInt32(num) {
   let b = new ArrayBuffer(4);

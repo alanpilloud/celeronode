@@ -8,7 +8,7 @@ let commands = require("./commands.js");
 let flags = require("./flags.js");
 let types = require("./types.js");
 
-let devicePath = "/dev/ttyAMA0";
+let devicePath = "/dev/ttyUSB0";
 let deviceBaudRate = 57600;
 
 //  _       _ _   _       _ _
