@@ -64,6 +64,7 @@ const parser = port.pipe(
 );
 
 parser.on("data", response => {
+  port.close();
   data = response.toJSON().data;
 
   responseState = {
@@ -92,6 +93,7 @@ parser.on("data", response => {
 
   let myresponse = responseFormat[userArgs.commandName](responseState, data, type);
   process.stdout.write(JSON.stringify(myresponse));
+
   process.exit();
 });
 
