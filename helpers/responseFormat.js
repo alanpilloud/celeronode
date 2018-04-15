@@ -13,6 +13,13 @@ module.exports = {
     });
   },
 
+  getStatus: function(state, data) {
+    return Object.assign({
+      command: state.command.commandName,
+      data
+    });
+  },
+
   readValue: function(state, data, type) {
     let buffer = new Uint8Array(data).buffer;
     let value;
