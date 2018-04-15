@@ -25,12 +25,6 @@ var port = new SerialPort(devicePath, {
   baudRate: deviceBaudRate
 });
 
-// if no response is received after a while, exit the programm
-setTimeout(() => {
-  console.log("Timeout");
-  process.exit();
-}, 10000);
-
 //                                 _
 //  _ __ ___  __ _ _   _  ___  ___| |_
 // | '__/ _ \/ _` | | | |/ _ \/ __| __|
@@ -48,9 +42,12 @@ port.write(send, function(err) {
   if (err) {
     console.log("Error on write: ", err.message);
     process.exit();
-  } else {
-    console.log("Request sent to " + devicePath);
   }
+
+  // if no response is received after a while, exit the programm
+  setTimeout(() => {
+    process.exit();
+  }, 100);
 });
 
 //  _ __ ___  ___ _ __   ___  _ __  ___  ___
@@ -68,9 +65,9 @@ const parser = port.pipe(
 
 parser.on("data", response => {
   data = response.toJSON().data;
-  console.log("response", data);
 
   responseState = {
+    command: userArgs,
     isChecksumValid: false,
     isRequestAcknowledged: false
   };
@@ -92,8 +89,9 @@ parser.on("data", response => {
     var typeByte = data.shift();
     var type = Object.keys(types)[Object.values(types).indexOf(typeByte)];
   }
-  console.log(JSON.stringify(responseFormat[userArgs.commandName](responseState, data, type)));
 
+  let myresponse = responseFormat[userArgs.commandName](responseState, data, type);
+  process.stdout.write(JSON.stringify(myresponse));
   process.exit();
 });
 
@@ -115,8 +113,6 @@ function makeCommand(command, params) {
   params.push(getChecksum(params));
 
   let buffer = new Int16Array(params);
-
-  console.log(buffer);
 
   return Buffer.from(buffer);
 }

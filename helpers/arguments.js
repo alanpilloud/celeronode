@@ -75,7 +75,7 @@ module.exports = {
         case "Int32":
         case "Uint32":
         case "Float":
-          buffer = toBytesInt32(options.value);
+          buffer = toBytesInt32(options.value).reverse();
           break;
       }
       data.push(...buffer);
@@ -98,6 +98,6 @@ function toBytesInt16(num) {
 
 function toBytesInt32(num) {
   let b = new ArrayBuffer(4);
-  new DataView(b).setUint32(0, num);
-  return Array.from(new Uint8Array(b));
+  new DataView(b).setInt32(0, num);
+  return Array.from(new Int8Array(b));
 }
