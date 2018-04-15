@@ -22,7 +22,8 @@ let deviceBaudRate = 57600;
 var userArgs = argumentsHelper.userArgs();
 
 var port = new SerialPort(devicePath, {
-  baudRate: deviceBaudRate
+  baudRate: deviceBaudRate,
+  lock: false
 });
 
 //                                 _

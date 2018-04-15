@@ -1,14 +1,14 @@
 module.exports = {
   start: function(state, data) {
     return Object.assign({
-      state,
+      command: state.command.commandName,
       data
     });
   },
 
   stop: function(state, data) {
     return Object.assign({
-      state,
+      command: state.command.commandName,
       data
     });
   },
@@ -40,8 +40,8 @@ module.exports = {
     }
 
     return Object.assign({
-      state,
-      data,
+      command: state.command.commandName,
+      flag: state.command.flag.name,
       value
     });
   },
