@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 let SerialPort = require("serialport");
 let Buffer = require("buffer").Buffer;
 let argumentsHelper = require("./helpers/arguments.js");
