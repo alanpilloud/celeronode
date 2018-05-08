@@ -4,8 +4,6 @@ let SerialPort = require("serialport");
 let Buffer = require("buffer").Buffer;
 let argumentsHelper = require("./helpers/arguments.js");
 let responseFormat = require("./helpers/responseFormat.js");
-let commands = require("./commands.js");
-let flags = require("./flags.js");
 let types = require("./types.js");
 
 let devicePath = "/dev/ttyUSB0";
@@ -36,7 +34,6 @@ var port = new SerialPort(devicePath, {
 
 // start command
 var send = makeCommand(userArgs.command, userArgs.data);
-send = Buffer.from(send);
 
 // write command to port
 port.write(send, function(err) {
